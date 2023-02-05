@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 
-class PageController
+class PageController extends AbstractController
 {
     #[Route('/')]
     public function home( Request $request ) : Response
     {
         $search = $request->get('search');
-        return new Response("Hello wordl!", $search);
+        return $this->render('home.html.twig', ['search' => $search]);
     }
 }
